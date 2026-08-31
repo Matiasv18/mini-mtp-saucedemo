@@ -1,0 +1,30 @@
+name: Smoke SauceDemo
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Selenium
+        run: |
+          pip install selenium
+
+      - name: Ejecutar Smoke
+        run: |
+          python run_smoke.py

@@ -2,6 +2,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def test_checkout_validacion():
@@ -47,14 +49,14 @@ def test_checkout_validacion():
             "checkout"
         ).click()
 
-        # =========================
+                # =========================
         # 5. Intentar continuar
         #    sin llenar los datos
         # =========================
-        driver.find_element(
-            By.ID,
-            "continue"
-        ).click()
+        continue_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "continue"))
+        )
+        continue_button.click()
 
         # =========================
         # 6. Verificar mensaje

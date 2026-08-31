@@ -58,15 +58,13 @@ def test_checkout_validacion():
         )
         continue_button.click()
 
-        # =========================
+                # =========================
         # 6. Verificar mensaje
         #    de validación
         # =========================
-        error = driver.find_element(
-            By.CSS_SELECTOR,
-            "[data-test='error']"
+        error = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='error']"))
         )
-
         assert "First Name is required" in error.text
 
         print("AUT-02: Validación de checkout exitosa")

@@ -25,6 +25,11 @@ jobs:
         run: |
           pip install selenium
 
+      - name: Instalar Chromium para Ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium || sudo apt-get install -y chromium-browser
+
       - name: Ejecutar Smoke
         run: |
           python run_smoke.py
